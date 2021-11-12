@@ -23,6 +23,22 @@ def delete_task(request, task_id):
     return redirect("todolist")
 
 
+def edit_task(request, task_id):
+    if request.method == "POST":
+        # POST request
+        task = TaskList.objects.get(pk=task_id)
+        form = TaskForm(request.POST or None, instance=task)
+        if form.is_valid():
+            form.save()
+
+        messages.success(request, ("Task Edited!"))
+        return redirect("todolist")
+    else:
+        # GET request
+        task_obj = TaskList.objects.get(pk=task_id)
+        return render(request, "edit.html", {"task_obj": task_obj})
+
+
 def contact(request):
     context = {
         "welcome_text": "Welcome to Contact Page.",
