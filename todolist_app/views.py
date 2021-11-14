@@ -71,3 +71,10 @@ def about(request):
         "welcome_text": "Welcome to About Page.",
     }
     return render(request, "about.html", context)
+
+
+def index(request):
+    context = {
+        "index_text": "Welcome to Index Page.",
+    }
+    return render(request, "index.html", context)
