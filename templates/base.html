@@ -36,8 +36,21 @@
             <a class="nav-link" href="{% url 'about' %}">About Us</a>
           </li>
         </ul>
+
+
+    {% if user.is_authenticated %}
+      <div class="d-flex">
+        <p class="text-white">Logged in as {{ user.username }}</p>
+        <a href="{% url 'logout' %}">
+          <button class="btn btn-outline-success" type="submit">Logout</button>
+        </a>
       </div>
+    {% else %}
+      <p>Logged Out</p>
+    {% endif %}
     </div>
+    </div>
+
   </nav>
 </head>
 
